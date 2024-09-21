@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chipy Chatbot</title>
+
+    <!-- css file link -->
+    <link rel="stylesheet" href="./index.css">
+
+    <!-- font awesome icon cdn-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="parent">
+        <div class="desc">
+            <h1 class="text">Chipy Chatbot</h1>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus quasi obcaecati, voluptatum perspiciatis illum sunt? Lorem ipsum dolor sit amet.</p>
+            <button id="init">START CHAT</button>
+        </div>
+        <div>
+            <img src="/chatbot.png" alt="" class="bot-img">
+        </div>
+    </div>
+    <div id="test" style="position: fixed;top: 4rem;right: 8rem;display: none;">
+        <div class="child" id="chatbot">
+            <div class="header">
+                <div class="h-child">
+                    <img src="/chatbot (1).png" alt="avatar" id="avatar">
+                    <div>
+                        <span class="name">Chipy Chatbot</span>
+                        <br>
+                        <span style="color:lawngreen">online</span>
+                    </div>
+                </div>
+                <div>
+                    <button class="refBtn"><i class="fa fa-refresh" onclick="initChat()"></i></button>
+                </div>
+            </div>
+
+            <div id="chat-box">
+
+            </div>
+            <div class="footer">
+                <span>powered by @</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- js file  -->
+    <script src="/index.js"></script>
+</body>
+</html>
+html,body{
+    height: 100%;
+}
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(90deg, rgba(1,1,88,0.82),rgb(1,1,29));
+    transition: 1s all ease-in-out;
+}
+#init{
+    margin-top: 2rem;
+    background: indianred;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    color: aliceblue;
+    cursor: pointer;
+}
+.desc p{
+    color: rgb(133,153,168);
+    margin: 0;
+    font-weight: 600;
+}
+.text{
+    font-size: 65px;
+    font-weight: 800;
+    color: cadetblue;
+    margin: 0;
+}
+.parent{
+    position: relative;
+    height: 100%;
+    padding: 0 7rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.bot-img{
+    width: 20rem;
+    height: 20rem;
+}
+.child{
+    box-shadow: 0 0 2px salmon;
+    border-radius: 15px;
+    height: 30rem;
+    width: 16rem;
+    margin: auto;
+    background: white;
+}
+.header img{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin: 0 0.5rem;
+    border: 1px solid rgb(231,231,231);
+    padding: 5px;
+}
+.header{
+    position: absolute;
+    top: 0;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid whitesmoke;
+    background: white;
+    width: 16rem;
+    padding: 5px 0;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    z-index: 1;
+    box-shadow: 0 0 2px rgb(175,175,175);
+}
+.h-child{
+    display: flex;
+    align-items: center;
+}
+.header span{
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+}
+.refBtn{
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    border-radius: 50%;
+    color: indianred;
+    font-size: 18px;
+    cursor: pointer;
+}
+.name{
+    font-weight: 600;
+}
+.footer{
+    position: absolute;
+    bottom: 0;
+    width: 16rem;
+    background: white;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    color: indianred;
+    padding: 15px 0;
+    text-align: center;
+    font-size: 14px;
+    box-shadow: 0 0 3px rgb(153,153,153);
+}
+#chat-box{
+    position: relative;
+    top: 40px;
+    padding: 8px 10px;
+    font-size: 12px;
+    height: 24.2rem;
+    overflow: auto;
+    background: rgb(224,241,253);
+    text-align: center;
+}
+
+/* these classes will be used in javascript file */
+.msg{
+    background: white;
+    padding: 5px 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    width: max-content;
+    font-size: 14px;
+    color: lightslategrey;
+    box-shadow: 0 0 5px rgb(226,226,226);
+    max-width: 65%;
+    text-align: left;
+}
+.test{
+    text-align: right;
+    margin: 20px 0;
+}
+.rep{
+    background: rgb(253,243,224);
+    color: lightslategray;
+    padding: 5px 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+    font-size: 14px;
+    box-shadow: 0 0 5px rgb(211,211,211);
+}
+.opt{
+    padding: 5px 20px;
+    columns: lightsalmon;
+    border: 1px solid blueviolet;
+    border-radius: 1rem;
+    margin: 0.3rem 0.5rem;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: 500;
+    background: white;
+    text-align: center;
+    font-size: 14px;
+    color: blueviolet;
+}
+.link{
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    color: aliceblue !important;
+    background: blueviolet;
+}
+.m-link{
+    text-decoration: none;
+}
+.link:active{
+    background: white;
+    border: 1px solid blueviolet;
+    color: blueviolet;
+}
+var data= {
+    chatinit:{
+        title: ["Hello <span class='emoji'> &#128075;</span>","I am Mr. Chatbot","How can I help you?"],
+        options: ["Food <span class='emoji'> &#128250;</span>","FashionDress","Medical <span class='emoji'> &#128090;</span>","haircut <span class='emoji'> &#127925;</span>"]
+    },
+    food: {
+        title:["Please select your location"],
+        options:['sulur','pappampattipirivu','ondiputhur','singaranallur','ramanathapuram','Gandhipuram','ukkadam','peelamedu'],
+        url : {
+            
+        }
+    },
+    
+    sulur: {
+        title:["select your food"],
+        options:['veg_nonvegfood'],
+        url : {
+        
+        }
+    },
+    veg_nonvegfood: {
+        title:["Select your favouite hotel"],
+        options:['Pandians','Jeyarani','A1-hotel','Mario','Budget_friendly_food','RHR_Veg_hotel'],
+        url : {
+            
+        }
+    },
+    pandians: {
+        title:["Hotel menu list"],
+        options:['biriyani-100','kuska-70','porotta-15',],
+        url : {
+            more:"https://maps.app.goo.gl/u5WY2v9WdM1cx79X9",
+            link:["https://assets.onecompiler.app/42scb8vzj/42scbcgf3/4231c7b6cb36895f5adebe1c566ea703.jpg"]
+        }
+    },
+    beauty: {
+        title:["Thanks for your response","Here are some beauty products for you","Click on it to know more"],
+        options:['Make-up & Nails','Skin Care','Fragrance','Hair care'],
+        url : {
+            more:"https://www.youtube.com/@webhub/videos",
+            link:["#","#","#","#"]
+        }
+    },
+    mobiles: {
+        title:["Thanks for your response","These are some results based on your input","Click on it to know more"],
+        options:['Mobile Phones','Cases & Covers','Power Banks','Tablets'],
+        url : {
+            more:"https://www.youtube.com/@webhub/videos",
+            link:["#","#","#","#"]
+        }
+    },
+    men: {
+        title:["Thanks for your response","These are some results based on your input","Click on it to know more"],
+        options:['Clothing','Shirts','T-shirts','Innerwear','Jeans'],
+        url : {
+            more:"https://www.youtube.com/@webhub/videos",
+            link:["#","#","#","#","#"]
+        }
+    },
+    women: {
+        title:["Thanks for your response","These are some results based on your input","Click on it to know more"],
+        options:['Clothing','Western Wear','Ethnic Wear','Top Brands'],
+        url : {
+            more:"https://www.youtube.com/@webhub/videos",
+            link:["#","#","#","#"]
+        }
+    },
+    music: {
+        title:["These are some latest songs <span class='emoji'> &#127925;</span>"],
+        options: ["song 1","song 2","song 3","song 4","song 5"],
+        url : {
+            more:"https://www.youtube.com/@webhub/videos",
+            link:["https://www.youtube.com/@webhub/videos","https://www.youtube.com/@webhub/videos","https://www.youtube.com/@webhub/videos","https://www.youtube.com/@webhub/videos"]
+        }
+    },
+    hollywood: {
+        title: ["Thanks for your response","Here are some genre based movies"],
+        options: ["Comedy","Horror","Sci-Fi","Romance","Action"],
+        url: {
+            more:"https://www.youtube.com/@webhub/videos",
+            link:["#","#","#","#","#"]
+        }
+    },
+    bollywood: {
+        title: ["Thanks for your response","Here are some genre based movies"],
+        options: ["Comedy","Horror","Sci-Fi","Romance","Action"],
+        url: {
+            more:"https://www.youtube.com/@webhub/videos",
+            link:["#","#","#","#","#"]
+        }
+    },
+    web: {
+        title: ["Thanks for your response","Here are some genre based web series"],
+        options: ["Comedy","Horror","Sci-Fi","Romance","Action"],
+        url: {
+            more:"https://www.youtube.com/@webhub/videos",
+            link:["#","#","#","#","#"]
+        }
+    },
+    others: {
+        title: ["Here are some more options for you"],
+        options: ["YouTube","Netflix","Amazon Prime","Hot Star"],
+        url: {
+            more:"https://www.youtube.com/",
+            link:["#","#","#","#","#"]
+        }
+    },
+}
+
+document.getElementById("init").addEventListener("click",showChatBot);
+var cbot= document.getElementById("chat-box");
+
+var len1= data.chatinit.title.length;
+
+function showChatBot(){
+    console.log(this.innerText);
+    if(this.innerText=='START CHAT'){
+        document.getElementById('test').style.display='block';
+        document.getElementById('init').innerText='CLOSE CHAT';
+        initChat();
+    }
+    else{
+        location.reload();
+    }
+}
+
+function initChat(){
+    j=0;
+    cbot.innerHTML='';
+    for(var i=0;i<len1;i++){
+        setTimeout(handleChat,(i*500));
+    }
+    setTimeout(function(){
+        showOptions(data.chatinit.options)
+    },((len1+1)*500))
+}
+
+var j=0;
+function handleChat(){
+    console.log(j);
+    var elm= document.createElement("p");
+    elm.innerHTML= data.chatinit.title[j];
+    elm.setAttribute("class","msg");
+    cbot.appendChild(elm);
+    j++;
+    handleScroll();
+}
+
+function showOptions(options){
+    for(var i=0;i<options.length;i++){
+        var opt= document.createElement("span");
+        var inp= '<div>'+options[i]+'</div>';
+        opt.innerHTML=inp;
+        opt.setAttribute("class","opt");
+        opt.addEventListener("click", handleOpt);
+        cbot.appendChild(opt);
+        handleScroll();
+    }
+}
+
+function handleOpt(){
+    console.log(this);
+    var str= this.innerText;
+    var textArr= str.split(" ");
+    var findText= textArr[0];
+    
+    document.querySelectorAll(".opt").forEach(el=>{
+        el.remove();
+    })
+    var elm= document.createElement("p");
+    elm.setAttribute("class","test");
+    var sp= '<span class="rep">'+this.innerText+'</span>';
+    elm.innerHTML= sp;
+    cbot.appendChild(elm);
+
+    console.log(findText.toLowerCase());
+    var tempObj= data[findText.toLowerCase()];
+    handleResults(tempObj.title,tempObj.options,tempObj.url);
+}
+
+function handleDelay(title){
+    var elm= document.createElement("p");
+        elm.innerHTML= title;
+        elm.setAttribute("class","msg");
+        cbot.appendChild(elm);
+}
+
+
+function handleResults(title,options,url){
+    for(let i=0;i<title.length;i++){
+        setTimeout(function(){
+            handleDelay(title[i]);
+        },i*500)
+        
+    }
+
+    const isObjectEmpty= (url)=>{
+        return JSON.stringify(url)=== "{}";
+    }
+
+    if(isObjectEmpty(url)==true){
+        console.log("having more options");
+        setTimeout(function(){
+            showOptions(options);
+        },title.length*500)
+        
+    }
+    else{
+        console.log("end result");
+        setTimeout(function(){
+            handleOptions(options,url);
+        },title.length*500)
+        
+    }
+}
+
+function handleOptions(options,url){
+    for(var i=0;i<options.length;i++){
+        var opt= document.createElement("span");
+        var inp= '<a class="m-link" href="'+url.link[i]+'">'+options[i]+'</a>';
+        opt.innerHTML=inp;
+        opt.setAttribute("class","opt");
+        cbot.appendChild(opt);
+    }
+    var opt= document.createElement("span");
+    var inp= '<a class="m-link" href="'+url.more+'">'+'See more</a>';
+
+    const isObjectEmpty= (url)=>{
+        return JSON.stringify(url)=== "{}";
+    }
+
+    console.log(isObjectEmpty(url));
+    console.log(url);
+    opt.innerHTML=inp;
+    opt.setAttribute("class","opt link");
+    cbot.appendChild(opt);
+    handleScroll();
+}
+
+function handleScroll(){
+    var elem= document.getElementById('chat-box');
+    elem.scrollTop= elem.scrollHeight;
+}
